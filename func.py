@@ -1,10 +1,10 @@
 import pandas as pd
-import streamlit as st
 from bs4 import BeautifulSoup
 import random
 import requests
 
 data = pd.read_json("processed_items.json")
+
 
 def get_filter_string(elements):
     s1 = str()
@@ -31,6 +31,11 @@ def recommend_games(number_of_players, duration, difficulty):  # return top 3 ga
 
     game_information = ['\n\r'.join(game_information[i]) for i in range(min(3, len(game_information)))]
 
+    while len(game_information) < 3:
+        game_id = random.randint(0, data.shape[0])
+        game = data.iloc[game_id]
+        game_information_add = [game[x] for x in ['url', 'name', 'price']]
+        game_information.append('\n\r'.join(game_information_add))
     return game_information
 
 

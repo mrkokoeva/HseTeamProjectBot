@@ -9,7 +9,8 @@ import os
 
 bot = telebot.TeleBot(os.environ['PROJECT_BOT_TOKEN'])
 
-@bot.message_handler(commands=['start'])  # можно несколько фиговин
+
+@bot.message_handler(commands=['start'])
 def start(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)  #
     knopka1 = types.KeyboardButton("Рандомная настолка")  # 1
@@ -20,7 +21,7 @@ def start(message):
     knopka7 = types.KeyboardButton("Для Тимура")
     markup.add(knopka1, knopka2, knopka4, knopka5, knopka6, knopka7)
     bot.send_message(message.chat.id, text="Привет всем любителям настолок",
-                     reply_markup=markup)  # можно еще режим указать(parse_mode)
+                     reply_markup=markup)
 
 
 @bot.message_handler(commands=['geo'])
@@ -50,8 +51,6 @@ def bot_message(message):
               '\n' + 'Продолжительность игры:' + '\n' + "1.Быстрые(<20 минут)" + '\n' + "2.Нормальные(<60 минут)" + '\n' + "3.Долгие(>60 минут)" + '\n' + '\n' + "Сложность игры:" + '\n' + \
               "1. Легкие" + '\n' + "2. Средней сложности" + '\n' + "3.Сложные \n Ответ дайте в формате: ANS 1 2 3"
         bot.send_message(message.chat.id, text=tex)
-    # сделать словарик
-    # чтобы 2 варианта было
     elif message.text == "3 новые игры":
         lst = func.get_3_new_games()
         game1 = lst[0].split(" / ")
@@ -131,9 +130,6 @@ def dist(message):
                    shops.shop[idx]['latm'],
                    shops.shop[idx]['title'],
                    shops.shop[idx]['address'])
-
-
-# магазины Hobby Games
 
 
 bot.polling(none_stop=True)
