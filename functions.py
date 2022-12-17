@@ -56,7 +56,7 @@ def get_games_from_page(link, games_to_return):  # print all games on page
         price = games[i]['data-price']
         games_to_return.append((name, price))
 
-    return len(soup.find_all('span', class_="icon icon-arrow-right")) != 0  # возвращает 0 если дальше страниц нет
+    return len(soup.find_all('span', class_="icon icon-arrow-right")) != 0
 
 
 def get_all_games(link):

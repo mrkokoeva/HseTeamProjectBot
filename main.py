@@ -78,11 +78,14 @@ def bot_message(message):
         if 1 <= int(str_text[1]) <= 4 and 1 <= int(str_text[2]) < 4 and 1 <= int(str_text[3]) < 4:
             ans = functions.recommend_games(library.amount_dict[int(str_text[1])], library.time_dict[int(str_text[2])],
                                             library.difficulty_dict[int(str_text[3])])
-            for i in range(0, 3):
+            for i in range(0, min(3, len(ans))):
                 markup1 = types.InlineKeyboardMarkup()
                 markup1.add(types.InlineKeyboardButton("Ссылка на игру", url=ans[i][0]))
                 tex = "Название: " + ans[i][1] + "\n" + "Цена:" + ans[i][2]
                 bot.send_message(message.chat.id, text=tex, reply_markup=markup1)
+
+            if len(ans) == 0:
+                bot.send_message(message.chat.id, text="Нет таких игр, братанчик(((")
         else:
             bot.send_message(message.chat.id, "Я вас не понимаю")
     elif message.text == "Хиты":
