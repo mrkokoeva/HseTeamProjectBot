@@ -4,13 +4,13 @@ use python3 main.py to activate
 Our team:
 
 
-Мария Кокоева
+Maria Kokoeva
 
 
-Евгений Сенкевич
+Yauheni Senkevich
 
 
-Александр Гапонов
+Alexander Haponau
 
 
-Максим Петляк
+Maksim Petliak
